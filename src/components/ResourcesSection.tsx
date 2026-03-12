@@ -29,7 +29,7 @@ const ResourcesSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="card-gradient rounded-xl p-6 glow-border group hover:scale-[1.02] transition-transform"
+              className="card-surface rounded-xl p-6 group hover:scale-[1.02] transition-transform"
             >
               <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                 <r.icon className="text-primary" size={22} />

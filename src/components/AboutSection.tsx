@@ -44,7 +44,7 @@ const AboutSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.15 }}
-              className="card-gradient rounded-xl p-6 glow-border text-center"
+              className="card-surface rounded-xl p-6 text-center"
             >
               <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-4">
                 <item.icon className="text-primary" size={24} />

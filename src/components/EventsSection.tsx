@@ -30,7 +30,7 @@ const EventsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="card-gradient rounded-xl p-6 glow-border flex flex-col"
+              className="card-surface rounded-xl p-6 flex flex-col"
             >
               <div className="flex items-center gap-2 text-xs text-primary mb-3 font-medium">
                 <Calendar size={14} />

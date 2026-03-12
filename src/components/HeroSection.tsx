@@ -1,15 +1,15 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Calendar } from "lucide-react";
-import heroBg from "@/assets/hero-bg.jpg";
 
 const HeroSection = () => {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0">
-        <img src={heroBg} alt="" className="w-full h-full object-cover opacity-40" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/80 to-background" />
-      </div>
+      {/* Abstract grid background */}
+      <div className="absolute inset-0 opacity-[0.04]" style={{
+        backgroundImage: `linear-gradient(hsl(220 10% 90%) 1px, transparent 1px), linear-gradient(90deg, hsl(220 10% 90%) 1px, transparent 1px)`,
+        backgroundSize: '60px 60px'
+      }} />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
 
       <div className="container relative z-10 mx-auto px-4 pt-20 pb-16 text-center">
         <motion.div
@@ -18,11 +18,11 @@ const HeroSection = () => {
           transition={{ duration: 0.8 }}
           className="max-w-3xl mx-auto"
         >
-          <span className="inline-block mb-6 px-4 py-1.5 rounded-full text-xs font-medium tracking-wider uppercase border border-primary/30 text-primary bg-primary/5">
+          <span className="inline-block mb-6 px-4 py-1.5 rounded-full text-xs font-medium tracking-wider uppercase border border-border text-muted-foreground bg-secondary/50">
             Welcome to the Community
           </span>
 
-          <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6">
+          <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6 text-foreground">
             Connect, Learn, and{" "}
             <span className="text-gradient">Grow in Technology</span>
           </h1>
