@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { MessageCircle, Send, Mail } from "lucide-react";
+import { MessageCircle, Send, Mail, Phone } from "lucide-react";
 
 const JoinSection = () => {
   return (
@@ -18,13 +18,20 @@ const JoinSection = () => {
             Join Open Source Tech and connect with people who are passionate about technology, innovation, and learning.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center">
             <a
               href="#"
               className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg font-semibold text-sm bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
             >
               <MessageCircle size={18} />
               Join Discord
+            </a>
+            <a
+              href="#"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg font-semibold text-sm border border-border text-foreground hover:bg-secondary transition-colors"
+            >
+              <Phone size={18} />
+              Join WhatsApp
             </a>
             <a
               href="#"
