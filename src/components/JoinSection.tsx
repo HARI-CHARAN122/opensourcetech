@@ -27,7 +27,9 @@ const JoinSection = () => {
               Join Discord
             </a>
             <a
-              href="#"
+              href="https://wa.me/919000072217"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg font-semibold text-sm border border-border text-foreground hover:bg-secondary transition-colors"
             >
               <Phone size={18} />
