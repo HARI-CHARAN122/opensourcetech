@@ -1,4 +1,4 @@
-import { Code2, Github, Linkedin, Twitter } from "lucide-react";
+import { Code2, Github, Linkedin, Twitter, Instagram } from "lucide-react";
 
 const footerLinks = [
   { label: "About", href: "#about" },
@@ -11,6 +11,7 @@ const footerLinks = [
 const socials = [
   { icon: Github, href: "#", label: "GitHub" },
   { icon: Linkedin, href: "#", label: "LinkedIn" },
+  { icon: Instagram, href: "#", label: "Instagram" },
   { icon: Twitter, href: "#", label: "Twitter" },
 ];
 
