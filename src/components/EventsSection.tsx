@@ -1,13 +1,5 @@
 import { motion } from "framer-motion";
-import { Calendar, ArrowRight } from "lucide-react";
-
-const events = [
-  { title: "AI and Machine Learning Workshop", desc: "Explore the fundamentals of AI/ML with hands-on exercises.", date: "April 15, 2026" },
-  { title: "Introduction to Web Development", desc: "Learn HTML, CSS, and JavaScript from scratch.", date: "April 22, 2026" },
-  { title: "Cloud Computing Basics", desc: "Get started with cloud platforms and deployment.", date: "May 5, 2026" },
-  { title: "Tech Networking Meetup", desc: "Connect with fellow tech enthusiasts and professionals.", date: "May 12, 2026" },
-  { title: "Open Tech Discussion Session", desc: "Open forum to discuss trends and share ideas.", date: "May 20, 2026" },
-];
+import { Calendar } from "lucide-react";
 
 const EventsSection = () => {
   return (
@@ -22,28 +14,20 @@ const EventsSection = () => {
           Upcoming <span className="text-gradient">Events</span>
         </motion.h2>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {events.map((e, i) => (
-            <motion.div
-              key={e.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="card-surface rounded-xl p-6 flex flex-col"
-            >
-              <div className="flex items-center gap-2 text-xs text-primary mb-3 font-medium">
-                <Calendar size={14} />
-                {e.date}
-              </div>
-              <h3 className="font-heading font-semibold text-foreground mb-2">{e.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-1">{e.desc}</p>
-              <button className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline mt-auto self-start">
-                Register <ArrowRight size={14} />
-              </button>
-            </motion.div>
-          ))}
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="card-surface rounded-xl p-12 max-w-2xl mx-auto text-center"
+        >
+          <Calendar size={48} className="text-muted-foreground mx-auto mb-4" />
+          <h3 className="font-heading text-xl font-semibold text-foreground mb-2">
+            No Events Scheduled Yet
+          </h3>
+          <p className="text-muted-foreground leading-relaxed">
+            We're planning exciting workshops, tech talks, and meetups. Stay tuned — upcoming events will be listed here soon!
+          </p>
+        </motion.div>
       </div>
     </section>
   );
