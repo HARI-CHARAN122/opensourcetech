@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { MessageCircle, Send, Mail } from "lucide-react";
+import { MessageCircle, Send, Mail, Phone } from "lucide-react";
 
 const JoinSection = () => {
   return (
