@@ -1,93 +1,171 @@
-import { Code2, Github, Linkedin, Mail } from "lucide-react";
+import { Code2, Github, Linkedin, Mail, Twitter } from "lucide-react";
 import { motion } from "framer-motion";
-import { sectionReveal } from "@/lib/motion";
 
 const Footer = () => {
   return (
-    <footer className="border-t border-white/10 bg-slate-950/60">
-      <div className="container mx-auto px-6 py-16">
+    <footer
+      style={{
+        backgroundColor: "rgba(3, 3, 6, 0.98)",
+        borderTop: "1px solid rgba(255, 255, 255, 0.05)",
+      }}
+      className="relative overflow-hidden pt-20 pb-10"
+    >
+      {/* Decorative gradient accents */}
+      <div 
+        className="absolute left-1/2 top-0 pointer-events-none -translate-x-1/2 w-[600px] h-[300px] blur-[120px] rounded-full"
+        style={{ background: "radial-gradient(circle, rgba(168,85,247,0.15) 0%, rgba(236,72,153,0.15) 100%)" }}
+      />
+
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
-          {...sectionReveal}
-          className="grid gap-10 md:grid-cols-4"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16"
         >
-          <div>
-            <div className="mb-4 flex items-center gap-2 font-heading text-lg font-bold">
-              <div className="rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 p-2 text-white shadow-lg shadow-slate-900/30">
-                <Code2 size={20} />
-              </div>
-              <span className="text-gradient">
+          {/* Brand & Description - 4 cols */}
+          <div className="md:col-span-4">
+            <div className="flex items-center gap-3 mb-6">
+              <img 
+                src="/logo.jpg?v=1" 
+                alt="Open Source Tech Logo" 
+                className="w-12 h-12 rounded-lg object-contain" 
+              />
+              <span
+                style={{
+                  background: "linear-gradient(135deg, #a855f7, #ec4899)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  color: "transparent"
+                }}
+                className="text-xl font-bold tracking-tight"
+              >
                 Open Source Tech
               </span>
             </div>
-            <p className="max-w-sm text-sm leading-relaxed text-slate-300">
-              A professional student and developer community platform for events,
-              workshops, networking, and collaborative growth.
+            <p
+              style={{ color: "rgba(255, 255, 255, 0.5)" }}
+              className="text-sm mb-8 leading-relaxed max-w-sm"
+            >
+              A community dedicated to advancing open source technology, 
+              empowering developers, and building the future of software collaboratively.
             </p>
-          </div>
-
-          <div>
-            <h3 className="mb-4 font-semibold text-slate-100">Platform</h3>
-            <div className="flex flex-col gap-2 text-sm text-slate-300">
-              <a href="#about" className="micro-link hover:text-white">
-                About
-              </a>
-              <a href="#activities" className="micro-link hover:text-white">
-                Activities
-              </a>
-              <a href="#events" className="micro-link hover:text-white">
-                Events
-              </a>
+            <div className="flex items-center gap-4">
+              {[
+                { Icon: Github, href: "#" },
+                { Icon: Linkedin, href: "#" },
+                { Icon: Twitter, href: "#" },
+                { Icon: Mail, href: "#" },
+              ].map(({ Icon, href }, i) => (
+                <a
+                  key={i}
+                  href={href}
+                  className="flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 group"
+                  style={{ 
+                    background: "rgba(255,255,255,0.03)", 
+                    border: "1px solid rgba(255,255,255,0.05)",
+                  }}
+                >
+                  <Icon 
+                    size={18} 
+                    style={{ color: "rgba(255,255,255,0.6)" }} 
+                    className="group-hover:text-pink-400 transition-colors" 
+                  />
+                </a>
+              ))}
             </div>
           </div>
 
-          <div>
-            <h3 className="mb-4 font-semibold text-slate-100">Community</h3>
-            <div className="flex flex-col gap-2 text-sm text-slate-300">
-              <a href="#community" className="micro-link hover:text-white">
-                Who Should Join
-              </a>
-              <a href="#resources" className="micro-link hover:text-white">
-                Resources
-              </a>
-              <a href="#join" className="micro-link hover:text-white">
-                Join Community
-              </a>
-            </div>
+          {/* Platform Links */}
+          <div className="md:col-span-2 md:col-start-6">
+            <h4 className="text-white font-semibold mb-6">Platform</h4>
+            <ul className="space-y-4">
+              {['About', 'Activities', 'Events'].map((link) => (
+                <li key={link}>
+                  <a 
+                    href="#"
+                    style={{ color: "rgba(255, 255, 255, 0.5)" }}
+                    className="text-sm transition-colors hover:text-white"
+                  >
+                    {link}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <div>
-            <h3 className="mb-4 font-semibold text-slate-100">Contact</h3>
-            <div className="mb-4 text-sm text-slate-300">
-              <p>Community channels opening soon</p>
-              <p>Stay tuned for official contact details</p>
-            </div>
-            <div className="flex items-center gap-3">
-              <a
-                href="#"
-                className="secondary-button !px-3 !py-2"
+          {/* Community Links */}
+          <div className="md:col-span-2">
+            <h4 className="text-white font-semibold mb-6">Community</h4>
+            <ul className="space-y-4">
+              {['Who Should Join', 'Resources', 'Join Us'].map((link) => (
+                <li key={link}>
+                  <a 
+                    href="#"
+                    style={{ color: "rgba(255, 255, 255, 0.5)" }}
+                    className="text-sm transition-colors hover:text-white"
+                  >
+                    {link}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Connect Section */}
+          <div className="md:col-span-3">
+            <h4 className="text-white font-semibold mb-6">Connect</h4>
+            <div 
+              className="p-5 rounded-xl relative overflow-hidden group"
+              style={{
+                border: "1px solid rgba(236,72,153,0.15)",
+                background: "linear-gradient(180deg, rgba(236,72,153,0.05) 0%, rgba(168,85,247,0.05) 100%)",
+              }}
+            >
+              <div 
+                className="absolute inset-x-0 top-0 h-px w-full" 
+                style={{ background: "linear-gradient(90deg, transparent, rgba(236,72,153,0.5), transparent)" }} 
+              />
+              <h5 className="text-white font-medium mb-2 opacity-90">Stay in the loop</h5>
+              <p 
+                style={{ color: "rgba(255, 255, 255, 0.5)" }}
+                className="text-xs mb-4 leading-relaxed"
               >
-                <Github size={18} />
-              </a>
-              <a
-                href="#"
-                className="secondary-button !px-3 !py-2"
+                Platforms launching soon. Join now to be first.
+              </p>
+              <a 
+                href="#join"
+                style={{ color: "#fbcfe8", borderBottom: "1px solid rgba(251,207,232,0.3)" }}
+                className="text-sm font-medium inline-flex items-center gap-1 pb-0.5 hover:gap-2 transition-all"
               >
-                <Linkedin size={18} />
-              </a>
-              <a
-                href="#"
-                className="secondary-button !px-3 !py-2"
-              >
-                <Mail size={18} />
+                Join now <span>→</span>
               </a>
             </div>
           </div>
         </motion.div>
 
-        <div className="mt-12 border-t border-white/10 pt-6 text-center text-sm text-slate-400">
-          © {new Date().getFullYear()} Open Source Tech Community. Built for
-          learning, collaboration, and professional growth.
-        </div>
+        {/* Bottom Bar */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex flex-col md:flex-row items-center justify-between pt-8"
+          style={{ borderTop: "1px solid rgba(255, 255, 255, 0.05)" }}
+        >
+          <p 
+            style={{ color: "rgba(255, 255, 255, 0.4)" }} 
+            className="text-xs"
+          >
+            © {new Date().getFullYear()} Open Source Tech. All rights reserved.
+          </p>
+          <div className="flex items-center gap-2 mt-4 md:mt-0">
+            <span style={{ color: "rgba(255,255,255,0.4)" }} className="text-xs font-medium">
+              Code Together. Grow Together.
+            </span>
+          </div>
+        </motion.div>
       </div>
     </footer>
   );

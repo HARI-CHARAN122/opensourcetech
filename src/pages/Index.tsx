@@ -1,3 +1,4 @@
+import CustomCursor from "@/components/CustomCursor";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
@@ -12,18 +13,27 @@ import SiteBackground from "@/components/background/SiteBackground";
 const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <CustomCursor />
+
       <SiteBackground />
+
       <Navbar />
+
       <main className="relative z-10">
+
         <HeroSection />
+
         <AboutSection />
         <WhatWeDoSection />
         <EventsSection />
         <CommunitySection />
         <ResourcesSection />
         <JoinSection />
+
       </main>
+
       <Footer />
+
     </div>
   );
 };

@@ -1,60 +1,118 @@
 import { motion } from "framer-motion";
-import { MessageCircle, Send, Mail, Phone } from "lucide-react";
+import { MessageCircle, Send, Mail, Phone, ArrowRight, Sparkles } from "lucide-react";
 import { cardReveal, sectionReveal } from "@/lib/motion";
 
-const JoinSection = () => {
-  const channels = [
-    {
-      href: "#",
-      label: "Connect on Discord",
-      icon: MessageCircle,
-      primary: true,
-    },
-    {
-      href: "https://wa.me/919000072217",
-      label: "Connect on WhatsApp",
-      icon: Phone,
-      external: true,
-    },
-    {
-      href: "#",
-      label: "Connect on Telegram",
-      icon: Send,
-    },
-    {
-      href: "#",
-      label: "Get Updates by Email",
-      icon: Mail,
-    },
-  ];
+const channels = [
+  {
+    href: "#",
+    label: "Discord",
+    sublabel: "Join our server",
+    icon: MessageCircle,
+    gradient: "from-indigo-500 to-purple-500",
+    color: "#6366f1",
+  },
+  {
+    href: "https://wa.me/919000072217",
+    label: "WhatsApp",
+    sublabel: "Chat directly",
+    icon: Phone,
+    gradient: "from-emerald-500 to-teal-500",
+    color: "#10b981",
+    external: true,
+  },
+  {
+    href: "#",
+    label: "Telegram",
+    sublabel: "Get updates",
+    icon: Send,
+    gradient: "from-cyan-500 to-blue-500",
+    color: "#06b6d4",
+  },
+  {
+    href: "#",
+    label: "Email",
+    sublabel: "Stay informed",
+    icon: Mail,
+    gradient: "from-pink-500 to-rose-500",
+    color: "#ec4899",
+  },
+];
 
+const JoinSection = () => {
   return (
-    <section id="join" className="section-shell bg-muted/20">
+    <section id="join" className="section-shell relative overflow-hidden">
+      {/* Background */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute left-1/2 bottom-0 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-purple-600/8 blur-[120px]" />
+        <div className="absolute left-1/4 top-0 h-[300px] w-[300px] rounded-full bg-pink-600/6 blur-[100px]" />
+      </div>
+
       <div className="container mx-auto px-4">
         <motion.div
           {...sectionReveal}
-          className="card-surface mx-auto max-w-4xl rounded-2xl p-8 text-center md:p-12"
+          className="gradient-border relative mx-auto max-w-4xl overflow-hidden p-10 text-center md:p-16"
         >
-          <h2 className="section-title mb-6">
-            Join the <span className="text-gradient">Community Network</span>
+          {/* Corner glows */}
+          <div className="pointer-events-none absolute -top-20 -left-20 h-40 w-40 rounded-full bg-purple-500/10 blur-[60px]" />
+          <div className="pointer-events-none absolute -bottom-20 -right-20 h-40 w-40 rounded-full bg-pink-500/10 blur-[60px]" />
+
+          {/* Top badge */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="mb-6 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-widest"
+            style={{
+              border: "1px solid rgba(168,85,247,0.3)",
+              background: "rgba(168,85,247,0.1)",
+              color: "#d8b4fe",
+            }}
+          >
+            <Sparkles size={12} />
+            Join the Movement
+          </motion.div>
+
+          <h2 className="section-title mb-5">
+            Ready to <span className="text-gradient">Connect?</span>
           </h2>
-          <p className="section-subtitle mx-auto mb-10 max-w-2xl">
-            Stay connected for event updates, workshop registrations, and
-            collaboration opportunities with students and developers.
+          <p className="section-subtitle mx-auto mb-14 max-w-xl">
+            Pick your platform and jump in. Stay updated on events,
+            workshops, and opportunities as they drop.
           </p>
 
-          <div className="flex flex-col flex-wrap justify-center gap-4 sm:flex-row">
+          {/* Channel cards */}
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {channels.map((channel, index) => (
               <motion.a
                 key={channel.label}
                 href={channel.href}
                 target={channel.external ? "_blank" : undefined}
                 rel={channel.external ? "noopener noreferrer" : undefined}
-                {...cardReveal(index * 0.06)}
-                className={channel.primary ? "primary-button" : "secondary-button"}
+                {...cardReveal(index * 0.07)}
+                whileHover={{ scale: 1.04, y: -4 }}
+                className="gradient-border group relative flex flex-col items-center gap-3 overflow-hidden p-6 text-center"
               >
-                <channel.icon size={18} />
-                {channel.label}
+                {/* Hover glow */}
+                <div
+                  className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                  style={{ background: `radial-gradient(circle at 50% 0%, ${channel.color}20, transparent 70%)` }}
+                />
+
+                <div className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${channel.gradient} p-0.5`}>
+                  <div className="flex h-full w-full items-center justify-center rounded-xl bg-[#080810]">
+                    <channel.icon size={20} style={{ color: channel.color }} />
+                  </div>
+                </div>
+
+                <div>
+                  <p className="font-heading font-bold text-white">{channel.label}</p>
+                  <p className="mt-0.5 text-xs section-subtitle">{channel.sublabel}</p>
+                </div>
+
+                <ArrowRight
+                  size={14}
+                  className="absolute bottom-3 right-3 opacity-0 transition-opacity duration-300 group-hover:opacity-60"
+                  style={{ color: channel.color }}
+                />
               </motion.a>
             ))}
           </div>

@@ -60,9 +60,11 @@ const Navbar = () => {
           href="#home"
           className="flex items-center gap-2.5 font-heading font-bold text-lg text-white"
         >
-          <div className="p-1.5 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-slate-900/30">
-            <Code2 size={20} />
-          </div>
+          <img 
+            src="/logo.jpg?v=1" 
+            alt="Open Source Tech Logo" 
+            className="w-10 h-10 object-contain rounded-md drop-shadow-[0_0_10px_rgba(255,255,255,0.1)]" 
+          />
           <span className="text-gradient">
             Open Source Tech
           </span>
@@ -73,17 +75,15 @@ const Navbar = () => {
             <a
               key={link.href}
               href={link.href}
-              className={`group micro-link relative text-sm font-medium ${
-                activeSection === link.href
+              className={`group micro-link relative text-sm font-medium ${activeSection === link.href
                   ? "text-white"
                   : "text-slate-300 hover:text-white"
-              }`}
+                }`}
             >
               {link.label}
               <span
-                className={`absolute left-0 -bottom-1 h-[2px] bg-gradient-to-r from-blue-500 to-indigo-500 transition-all duration-300 ${
-                  activeSection === link.href ? "w-full" : "w-0 group-hover:w-full"
-                }`}
+                className={`absolute left-0 -bottom-1 h-[2px] bg-gradient-to-r from-blue-500 to-indigo-500 transition-all duration-300 ${activeSection === link.href ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
               />
             </a>
           ))}
@@ -113,11 +113,10 @@ const Navbar = () => {
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className={`micro-link rounded-lg py-2 px-3 text-sm font-medium ${
-                    activeSection === link.href
+                  className={`micro-link rounded-lg py-2 px-3 text-sm font-medium ${activeSection === link.href
                       ? "bg-white/10 text-white"
                       : "text-slate-200 hover:bg-white/10"
-                  }`}
+                    }`}
                 >
                   {link.label}
                 </a>
