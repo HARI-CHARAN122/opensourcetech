@@ -6,47 +6,39 @@
 
 @layer base {
   :root {
-    --background: 225 15% 8%;
-    --foreground: 220 10% 90%;
-
-    --card: 225 14% 11%;
-    --card-foreground: 220 10% 90%;
-
-    --popover: 225 14% 11%;
-    --popover-foreground: 220 10% 90%;
-
-    --primary: 220 60% 55%;
+    --background: 222 47% 6%;
+    --foreground: 210 20% 96%;
+  
+    --card: 222 40% 10%;
+    --card-foreground: 210 20% 96%;
+  
+    --popover: 222 40% 10%;
+    --popover-foreground: 210 20% 96%;
+  
+    --primary: 224 52% 55%;
     --primary-foreground: 0 0% 100%;
-
-    --secondary: 225 12% 15%;
-    --secondary-foreground: 220 10% 80%;
-
-    --muted: 225 12% 13%;
-    --muted-foreground: 220 8% 50%;
-
-    --accent: 220 45% 50%;
+  
+    --secondary: 222 35% 14%;
+    --secondary-foreground: 210 20% 90%;
+  
+    --muted: 222 30% 13%;
+    --muted-foreground: 215 15% 65%;
+  
+    --accent: 232 34% 52%;
     --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 65% 50%;
+  
+    --destructive: 0 70% 55%;
     --destructive-foreground: 0 0% 100%;
-
-    --border: 225 10% 16%;
-    --input: 225 10% 16%;
-    --ring: 220 60% 55%;
-
-    --radius: 0.625rem;
-
-    --sidebar-background: 225 14% 9%;
-    --sidebar-foreground: 220 10% 90%;
-    --sidebar-primary: 220 60% 55%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 225 12% 15%;
-    --sidebar-accent-foreground: 220 10% 80%;
-    --sidebar-border: 225 10% 16%;
-    --sidebar-ring: 220 60% 55%;
+  
+    --border: 222 25% 18%;
+    --input: 222 25% 18%;
+    --ring: 230 85% 65%;
+  
+    --radius: 0.75rem;
+    --ui-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --ui-duration: 260ms;
   }
 }
-
 @layer base {
   * {
     @apply border-border;
@@ -54,6 +46,10 @@
 
   body {
     @apply bg-background text-foreground font-body antialiased;
+    background-image:
+      radial-gradient(circle at 15% 20%, hsl(224 52% 55% / 0.045), transparent 35%),
+      radial-gradient(circle at 85% 10%, hsl(232 34% 52% / 0.04), transparent 30%);
+    background-attachment: fixed;
   }
 
   html {
@@ -62,15 +58,90 @@
 }
 
 @layer utilities {
+  .section-shell {
+    @apply relative py-24 md:py-28;
+  }
+
+  .section-title {
+    @apply font-heading text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground;
+  }
+
+  .section-subtitle {
+    @apply text-muted-foreground leading-relaxed text-base md:text-lg;
+  }
+
   .text-gradient {
-    background: linear-gradient(135deg, hsl(220 60% 60%), hsl(240 50% 65%));
+    background: linear-gradient(
+      135deg,
+      hsl(223 52% 60%),
+      hsl(228 42% 58%),
+      hsl(233 36% 56%)
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .card-surface {
-    background: hsl(225 14% 11%);
-    border: 1px solid hsl(225 10% 16%);
+    background: linear-gradient(
+      145deg,
+      hsl(222 34% 12% / 0.72),
+      hsl(222 34% 10% / 0.62)
+    );
+  
+    backdrop-filter: blur(10px);
+  
+    border: 1px solid hsl(222 25% 22% / 0.7);
+  
+    box-shadow:
+      0 10px 24px rgba(0,0,0,0.28),
+      inset 0 1px 0 rgba(255,255,255,0.04);
   }
+
+  .card-hover {
+    @apply transition-transform transition-shadow;
+    transition-duration: var(--ui-duration);
+    transition-timing-function: var(--ui-ease);
+    @apply hover:-translate-y-1 hover:scale-[1.01] hover:shadow-[0_14px_30px_rgba(54,75,130,0.18)];
+  }
+
+  .glass-nav {
+    @apply backdrop-blur-xl bg-slate-950/60 border-b border-white/10;
+  }
+
+  .glow-orb {
+    @apply absolute rounded-full blur-3xl pointer-events-none;
+  }
+
+  .grid-overlay {
+    background-image:
+      linear-gradient(hsl(220 10% 80% / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(220 10% 80% / 0.05) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  .primary-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-7 py-3.5 text-sm font-semibold text-white transition-transform transition-shadow transition-[filter] bg-gradient-to-r from-blue-600 via-indigo-600 to-slate-600 hover:brightness-105 hover:shadow-[0_10px_24px_rgba(52,74,133,0.3)] hover:-translate-y-0.5;
+    transition-duration: var(--ui-duration);
+    transition-timing-function: var(--ui-ease);
+  }
+
+  .secondary-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-7 py-3.5 text-sm font-semibold border border-white/15 bg-white/5 backdrop-blur text-foreground transition-colors transition-transform transition-shadow hover:bg-white/10 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(15,23,42,0.28)];
+    transition-duration: var(--ui-duration);
+    transition-timing-function: var(--ui-ease);
+  }
+
+  .micro-link {
+    @apply transition-colors;
+    transition-duration: var(--ui-duration);
+    transition-timing-function: var(--ui-ease);
+  }
+}
+.font-heading {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.font-body {
+  font-family: 'Inter', sans-serif;
 }

@@ -1,42 +1,64 @@
 import { motion } from "framer-motion";
-import { Mic, Wrench, Network, CalendarDays, Share2 } from "lucide-react";
+import { Mic, Wrench, Network, Users2, BookOpen } from "lucide-react";
+import { cardReveal, sectionReveal } from "@/lib/motion";
 
 const features = [
-  { icon: Mic, title: "Tech Talks", desc: "Regular discussions about new technologies and industry trends." },
-  { icon: Wrench, title: "Workshops", desc: "Hands-on workshops to help members learn practical skills." },
-  { icon: Network, title: "Networking", desc: "Connecting students, developers, and professionals." },
-  { icon: CalendarDays, title: "Community Events", desc: "Meetups and online sessions for learning and collaboration." },
-  { icon: Share2, title: "Knowledge Sharing", desc: "Members share insights, tools, and experiences." },
+  {
+    icon: Wrench,
+    title: "Workshops",
+    desc: "Practical sessions that help members build real implementation skills.",
+  },
+  {
+    icon: Mic,
+    title: "Tech Talks",
+    desc: "Expert-led talks on modern engineering, data, cloud, and AI trends.",
+  },
+  {
+    icon: Network,
+    title: "Networking",
+    desc: "Connect with peers, mentors, and industry contributors regularly.",
+  },
+  {
+    icon: Users2,
+    title: "Collaborative Projects",
+    desc: "Build projects in teams to strengthen portfolio and teamwork skills.",
+  },
+  {
+    icon: BookOpen,
+    title: "Learning Resources",
+    desc: "Access curated guides, notes, recordings, and community knowledge.",
+  },
 ];
 
 const WhatWeDoSection = () => {
   return (
-    <section className="py-24 bg-muted/30">
+    <section id="activities" className="section-shell bg-muted/20">
       <div className="container mx-auto px-4">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="font-heading text-3xl md:text-4xl font-bold text-center mb-16"
+        <motion.div
+          {...sectionReveal}
+          className="mx-auto mb-16 max-w-3xl text-center"
         >
-          What <span className="text-gradient">We Do</span>
-        </motion.h2>
+          <h2 className="section-title mb-5">
+            Community <span className="text-gradient">Activities</span>
+          </h2>
+          <p className="section-subtitle">
+            A structured learning ecosystem focused on practical growth,
+            collaboration, and professional readiness.
+          </p>
+        </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((f, i) => (
             <motion.div
               key={f.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="card-surface rounded-xl p-6 group hover:scale-[1.02] transition-transform"
+              {...cardReveal(i * 0.08)}
+              className="card-surface card-hover group rounded-xl p-6"
             >
-              <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                <f.icon className="text-primary" size={22} />
+              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-white/10 ring-1 ring-white/20 transition-colors group-hover:bg-white/15">
+                <f.icon className="text-slate-300" size={22} />
               </div>
-              <h3 className="font-heading font-semibold text-foreground mb-2">{f.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+              <h3 className="mb-2 font-heading font-semibold text-foreground">{f.title}</h3>
+              <p className="text-sm leading-relaxed text-muted-foreground">{f.desc}</p>
             </motion.div>
           ))}
         </div>

@@ -7,18 +7,22 @@ import CommunitySection from "@/components/CommunitySection";
 import ResourcesSection from "@/components/ResourcesSection";
 import JoinSection from "@/components/JoinSection";
 import Footer from "@/components/Footer";
+import SiteBackground from "@/components/background/SiteBackground";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background text-foreground">
+      <SiteBackground />
       <Navbar />
-      <HeroSection />
-      <AboutSection />
-      <WhatWeDoSection />
-      <EventsSection />
-      <CommunitySection />
-      <ResourcesSection />
-      <JoinSection />
+      <main className="relative z-10">
+        <HeroSection />
+        <AboutSection />
+        <WhatWeDoSection />
+        <EventsSection />
+        <CommunitySection />
+        <ResourcesSection />
+        <JoinSection />
+      </main>
       <Footer />
     </div>
   );

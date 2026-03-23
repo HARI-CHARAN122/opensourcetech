@@ -1,56 +1,58 @@
 import { motion } from "framer-motion";
 import { Target, Users, Lightbulb } from "lucide-react";
+import { cardReveal, sectionReveal } from "@/lib/motion";
 
 const AboutSection = () => {
   return (
-    <section id="about" className="py-24 bg-background">
+    <section id="about" className="section-shell">
       <div className="container mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="max-w-3xl mx-auto text-center mb-16"
+          {...sectionReveal}
+          className="mx-auto mb-16 max-w-3xl text-center"
         >
-          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6">
-            About <span className="text-gradient">Open Source Tech</span>
+          <h2 className="section-title mb-6">
+            About <span className="text-gradient">Our Community</span>
           </h2>
-          <p className="text-muted-foreground leading-relaxed">
-            Open Source Tech is a collaborative technology community created to connect people who are passionate about learning and sharing knowledge about modern technologies. The community focuses on building meaningful connections, exploring emerging technologies, and helping members grow through shared learning experiences.
+          <p className="section-subtitle">
+            Open Source Tech is a student and developer community focused on
+            practical skill building, peer learning, and collaboration. We help
+            members move from theory to implementation through events,
+            workshops, mentorship, and shared resources.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
           {[
             {
               icon: Target,
               title: "Our Mission",
-              text: "To create a supportive community where people can connect, learn about new technologies, and grow together.",
+              text: "Enable students and developers to grow with practical learning and community support.",
             },
             {
               icon: Users,
-              title: "Our People",
-              text: "Students, developers, engineers, and enthusiasts united by curiosity and a love for technology.",
+              title: "Who It Is For",
+              text: "Students, developers, and professionals who want guided growth and collaborative opportunities.",
             },
             {
               icon: Lightbulb,
-              title: "Our Vision",
-              text: "A world where knowledge is shared openly and everyone has the opportunity to grow in tech.",
+              title: "Member Value",
+              text: "Hands-on sessions, expert insights, networking, and curated resources for long-term development.",
             },
           ].map((item, i) => (
             <motion.div
               key={item.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.15 }}
-              className="card-surface rounded-xl p-6 text-center"
+              {...cardReveal(i * 0.08)}
+              className="card-surface card-hover rounded-xl p-7 text-center"
             >
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                <item.icon className="text-primary" size={24} />
+              <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-white/10 ring-1 ring-white/20">
+                <item.icon className="text-slate-300" size={24} />
               </div>
-              <h3 className="font-heading font-semibold text-lg mb-2 text-foreground">{item.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
+              <h3 className="mb-2 font-heading text-lg font-semibold text-foreground">
+                {item.title}
+              </h3>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                {item.text}
+              </p>
             </motion.div>
           ))}
         </div>
