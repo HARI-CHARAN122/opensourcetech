@@ -12,9 +12,9 @@ const channels = [
     color: "#6366f1",
   },
   {
-    href: "https://wa.me/919000072217",
+    href: "https://chat.whatsapp.com/BqyJTWr9iXh6Z7IisCwiUT",
     label: "WhatsApp",
-    sublabel: "Chat directly",
+    sublabel: "Join Community",
     icon: Phone,
     gradient: "from-emerald-500 to-teal-500",
     color: "#10b981",
@@ -29,7 +29,7 @@ const channels = [
     color: "#06b6d4",
   },
   {
-    href: "#",
+    href: "mailto:Contact@opensourcetech.in",
     label: "Email",
     sublabel: "Stay informed",
     icon: Mail,
