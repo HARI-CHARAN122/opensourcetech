@@ -1,17 +1,54 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Calendar, ChevronDown } from "lucide-react";
-import TechParticles from "@/components/TechParticles";
-import ProfessionalBackground from "@/components/ProfessionalBackground";
+import ThreeHero from "@/components/ThreeScene";
+
+const WORDS = ["Developers", "Designers", "Builders", "Learners", "Leaders"];
 
 const HeroSection = () => {
+  const [text, setText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [loopNum, setLoopNum] = useState(0);
+  const [typingSpeed, setTypingSpeed] = useState(150);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    const handleTyping = () => {
+      const i = loopNum % WORDS.length;
+      const fullText = WORDS[i];
+
+      setText(
+        isDeleting
+          ? fullText.substring(0, text.length - 1)
+          : fullText.substring(0, text.length + 1)
+      );
+
+      setTypingSpeed(isDeleting ? 50 : 150);
+
+      if (!isDeleting && text === fullText) {
+        timer = setTimeout(() => setIsDeleting(true), 2000);
+      } else if (isDeleting && text === "") {
+        setIsDeleting(false);
+        setLoopNum(loopNum + 1);
+        setTypingSpeed(500); // pause before starting next word
+      } else {
+        timer = setTimeout(handleTyping, typingSpeed);
+      }
+    };
+    
+    if (!timer) {
+      timer = setTimeout(handleTyping, typingSpeed);
+    }
+    
+    return () => clearTimeout(timer);
+  }, [text, isDeleting, loopNum, typingSpeed]);
+
   return (
     <section
       id="home"
       className="relative min-h-[96vh] flex flex-col items-center justify-center overflow-hidden"
     >
-      {/* Background effects */}
-      <TechParticles />
-      <ProfessionalBackground />
+      <ThreeHero />
 
       {/* Extra glow layers */}
       <div className="pointer-events-none absolute inset-0 -z-10">
@@ -48,7 +85,7 @@ const HeroSection = () => {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-indigo-400 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-indigo-400" />
             </span>
-            Student and Developer Technology Community
+            Student & Developer Technology Community
           </motion.div>
 
           {/* Heading */}
@@ -56,13 +93,11 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="font-heading text-5xl font-bold leading-[1.1] text-white sm:text-6xl md:text-7xl"
+            className="font-heading text-5xl font-bold leading-[1.1] text-white sm:text-6xl md:text-7xl min-h-[140px] md:min-h-[160px]"
           >
-            Learn, Build,
-            <br />
-            and Grow
-            <span className="mt-2 block text-gradient">
-              with a Real Tech Community
+            For Real <br />
+            <span className="mt-2 block text-gradient after:content-['|'] after:animate-pulse">
+              {text}
             </span>
           </motion.h1>
 
@@ -71,10 +106,9 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.7 }}
-            className="mx-auto mt-7 mb-10 max-w-2xl text-base leading-relaxed text-slate-400 md:text-lg"
+            className="mx-auto mt-7 mb-10 max-w-2xl text-base leading-relaxed text-slate-400 md:text-lg lg:text-xl font-medium"
           >
-            Practical workshops, real projects, and strong peer learning
-            for students and developers ready to make an impact.
+            Code Together. Grow Together.
           </motion.p>
 
           {/* Buttons */}
@@ -88,9 +122,8 @@ const HeroSection = () => {
               Join Community
               <ArrowRight size={17} />
             </a>
-            <a href="#events" className="secondary-button min-w-52 text-base">
-              <Calendar size={17} />
-              View Events
+            <a href="#activities" className="secondary-button min-w-52 text-base">
+              Explore Activities
             </a>
           </motion.div>
 

@@ -12,7 +12,7 @@ const channels = [
     color: "#6366f1",
   },
   {
-    href: "https://chat.whatsapp.com/BqyJTWr9iXh6Z7IisCwiUT",
+    href: "https://wa.me/919000072217",
     label: "WhatsApp",
     sublabel: "Join Community",
     icon: Phone,

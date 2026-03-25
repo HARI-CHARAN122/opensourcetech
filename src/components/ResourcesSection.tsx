@@ -67,8 +67,8 @@ const ResourcesSection = () => {
           variants={itemVariants}
           className="mx-auto mb-16 max-w-3xl text-center"
         >
-          <h2 className="mb-5 text-4xl md:text-5xl font-bold text-white">
-            Learning <span style={{ background: "linear-gradient(to right, #a855f7, #ec4899)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Resources</span>
+          <h2 className="section-title mb-6">
+            <span className="text-gradient">Everything You Need to Succeed</span>
           </h2>
           <p className="text-lg" style={{ color: "rgba(255,255,255,0.7)" }}>
             Curated content and recordings that help members learn faster and
@@ -142,6 +142,12 @@ const ResourcesSection = () => {
                     {r.desc}
                   </p>
                 </div>
+                
+                {/* Animated bottom border on hover */}
+                <div 
+                  className="absolute inset-x-0 bottom-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ background: `linear-gradient(90deg, transparent, ${r.colors[0]}, transparent)` }}
+                />
               </motion.div>
             );
           })}

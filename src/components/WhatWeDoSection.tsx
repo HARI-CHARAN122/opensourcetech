@@ -1,6 +1,20 @@
 import { motion } from "framer-motion";
 import { Mic, Wrench, Network, Users2, BookOpen, Code2 } from "lucide-react";
-import { cardReveal, sectionReveal } from "@/lib/motion";
+
+// Simple unoptimized motion reveal for sections
+const sectionReveal = {
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-100px" },
+  transition: { duration: 0.7 }
+};
+
+const cardReveal = (delay: number) => ({
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-50px" },
+  transition: { duration: 0.5, delay }
+});
 
 const features = [
   {
@@ -49,48 +63,72 @@ const features = [
 
 const WhatWeDoSection = () => {
   return (
-    <section id="activities" className="section-shell relative overflow-hidden">
+    <section id="activities" className="section-shell relative overflow-hidden py-32">
       <div className="pointer-events-none absolute inset-0 -z-10" style={{ background: "rgba(255,255,255,0.01)" }} />
 
       <div className="container mx-auto px-4">
         <motion.div {...sectionReveal} className="mx-auto mb-20 max-w-3xl text-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-widest"
-            style={{ border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.5)" }}>
-            <span className="h-1.5 w-1.5 rounded-full bg-pink-400" />
-            What We Do
-          </div>
           <h2 className="section-title mb-6">
-            Everything You Need to <span className="text-gradient">Level Up</span>
+            <span className="text-gradient">Everything You Need to Level Up</span>
           </h2>
           <p className="section-subtitle">
             A full ecosystem for learning, building, and growing — all in one community.
           </p>
         </motion.div>
 
-        <div className="mx-auto grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((f, i) => (
             <motion.div
               key={f.title}
               {...cardReveal(i * 0.07)}
-              className="gradient-border card-hover group relative overflow-hidden p-6"
+              className="gradient-border group relative overflow-hidden p-8 transition-all duration-500 hover:-translate-y-2 card-hover"
+              style={{
+                background: "rgba(10, 10, 15, 0.8)",
+                boxShadow: "0 0 0 rgba(0,0,0,0)"
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = `0 30px 60px rgba(0, 0, 0, 0.4), 0 0 40px ${f.color}40`;
+                e.currentTarget.style.borderColor = `${f.color}60`;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = `none`;
+                e.currentTarget.style.borderColor = `rgba(255,255,255,0.07)`;
+              }}
             >
-              {/* Glow bg */}
+              {/* Glow bg specific to card */}
               <div
-                className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100"
                 style={{ background: `radial-gradient(circle at 50% 0%, ${f.color}15, transparent 70%)` }}
               />
 
-              <div className={`mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${f.gradient} p-0.5`}>
-                <div className="flex h-full w-full items-center justify-center rounded-xl bg-[#080810]">
-                  <f.icon size={20} style={{ color: f.color }} />
+              {/* 3D Icon Container */}
+              <div className="mb-6" style={{ perspective: "1000px" }}>
+                <div 
+                  className="relative w-14 h-14 transition-transform duration-500 ease-out flex items-center justify-center group-hover:[transform:rotateX(15deg)_rotateY(-15deg)_translateZ(20px)]"
+                  style={{ transformStyle: "preserve-3d" }}
+                >
+                  <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${f.gradient} p-[2px]`}>
+                    <div className="flex h-full w-full items-center justify-center rounded-2xl bg-[#080810]">
+                      <f.icon size={24} style={{ color: f.color }} className="relative z-10" />
+                    </div>
+                  </div>
+                  
+                  {/* Floating Icon Glow Underneath */}
+                  <div 
+                    className="absolute -inset-2 opacity-0 transition-opacity duration-500 blur-xl -z-10 group-hover:opacity-100"
+                    style={{ background: f.color }}
+                  />
                 </div>
               </div>
 
-              <h3 className="mb-2 font-heading text-lg font-bold text-white">{f.title}</h3>
-              <p className="text-sm leading-relaxed section-subtitle">{f.desc}</p>
+              <h3 className="mb-3 font-heading text-xl font-bold text-white relative z-10">{f.title}</h3>
+              <p className="text-sm leading-relaxed section-subtitle relative z-10 font-medium">{f.desc}</p>
 
               {/* Bottom line */}
-              <div className={`absolute inset-x-0 bottom-0 h-px bg-gradient-to-r ${f.gradient} opacity-0 group-hover:opacity-60 transition-opacity duration-500`} />
+              <div 
+                className="absolute inset-x-0 bottom-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" 
+                style={{ background: `linear-gradient(90deg, transparent, ${f.color}, transparent)` }}
+              />
             </motion.div>
           ))}
         </div>

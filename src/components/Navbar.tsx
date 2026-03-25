@@ -61,13 +61,11 @@ const Navbar = () => {
           className="flex items-center gap-2.5 font-heading font-bold text-lg text-white"
         >
           <img 
-            src="/logo.jpg?v=1" 
+            src="/logo.jpg" 
             alt="Open Source Tech Logo" 
-            className="w-10 h-10 object-contain rounded-md drop-shadow-[0_0_10px_rgba(255,255,255,0.1)]" 
+            style={{ height: "40px", width: "auto" }}
+            className="object-contain rounded-md drop-shadow-[0_0_10px_rgba(255,255,255,0.1)]" 
           />
-          <span className="text-gradient">
-            Open Source Tech
-          </span>
         </a>
 
         <div className="hidden xl:flex items-center gap-6">

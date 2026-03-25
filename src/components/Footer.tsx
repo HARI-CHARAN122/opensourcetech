@@ -1,4 +1,4 @@
-import { Code2, Github, Linkedin, Mail, Twitter, Instagram } from "lucide-react";
+import { Github, Linkedin, Mail, Twitter } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Footer = () => {
@@ -6,13 +6,14 @@ const Footer = () => {
     <footer
       style={{
         backgroundColor: "rgba(3, 3, 6, 0.98)",
-        borderTop: "1px solid rgba(255, 255, 255, 0.05)",
+        borderTop: "3px solid transparent",
+        borderImage: "linear-gradient(to right, #a855f7, #ec4899, #06b6d4, #10b981) 1",
       }}
       className="relative overflow-hidden pt-20 pb-10"
     >
       {/* Decorative gradient accents */}
       <div 
-        className="absolute left-1/2 top-0 pointer-events-none -translate-x-1/2 w-[600px] h-[300px] blur-[120px] rounded-full"
+        className="absolute left-1/2 top-0 pointer-events-none -translate-x-1/2 w-[600px] h-[300px] blur-[120px] rounded-full z-0"
         style={{ background: "radial-gradient(circle, rgba(168,85,247,0.15) 0%, rgba(236,72,153,0.15) 100%)" }}
       />
 
@@ -28,7 +29,7 @@ const Footer = () => {
           <div className="md:col-span-4">
             <div className="flex items-center gap-3 mb-6">
               <img 
-                src="/logo.jpg?v=1" 
+                src="/logo.jpg" 
                 alt="Open Source Tech Logo" 
                 className="w-12 h-12 rounded-lg object-contain" 
               />
@@ -54,10 +55,9 @@ const Footer = () => {
             <div className="flex items-center gap-4">
               {[
                 { Icon: Github, href: "#" },
-                { Icon: Linkedin, href: "https://www.linkedin.com/company/open-source-tech-community/" },
+                { Icon: Linkedin, href: "#" },
                 { Icon: Twitter, href: "#" },
-                { Icon: Instagram, href: "https://www.instagram.com/opensourcetech.in?igsh=MXY2OXBsOXc4Z2g5" },
-                { Icon: Mail, href: "mailto:Contact@opensourcetech.in" },
+                { Icon: Mail, href: "#" },
               ].map(({ Icon, href }, i) => (
                 <a
                   key={i}
@@ -103,9 +103,7 @@ const Footer = () => {
               {['Who Should Join', 'Resources', 'Join Us'].map((link) => (
                 <li key={link}>
                   <a 
-                    href={link === 'Join Us' ? 'https://chat.whatsapp.com/BqyJTWr9iXh6Z7IisCwiUT' : '#'}
-                    target={link === 'Join Us' ? '_blank' : undefined}
-                    rel={link === 'Join Us' ? 'noopener noreferrer' : undefined}
+                    href="#"
                     style={{ color: "rgba(255, 255, 255, 0.5)" }}
                     className="text-sm transition-colors hover:text-white"
                   >
@@ -138,9 +136,7 @@ const Footer = () => {
                 Join our community on WhatsApp to stay updated.
               </p>
               <a 
-                href="https://chat.whatsapp.com/BqyJTWr9iXh6Z7IisCwiUT"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#"
                 style={{ color: "#fbcfe8", borderBottom: "1px solid rgba(251,207,232,0.3)" }}
                 className="text-sm font-medium inline-flex items-center gap-1 pb-0.5 hover:gap-2 transition-all"
               >
