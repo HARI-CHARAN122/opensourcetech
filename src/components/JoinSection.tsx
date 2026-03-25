@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { MessageCircle, Send, Mail, Phone, ArrowRight, Sparkles } from "lucide-react";
+import { MessageCircle, Linkedin, Mail, Phone, ArrowRight, Sparkles, Instagram } from "lucide-react";
 import { cardReveal, sectionReveal } from "@/lib/motion";
 
 const channels = [
@@ -12,7 +12,7 @@ const channels = [
     color: "#6366f1",
   },
   {
-    href: "https://wa.me/919000072217",
+    href: "https://chat.whatsapp.com/BqyJTWr9iXh6Z7IisCwiUT",
     label: "WhatsApp",
     sublabel: "Join Community",
     icon: Phone,
@@ -21,12 +21,22 @@ const channels = [
     external: true,
   },
   {
-    href: "#",
-    label: "Telegram",
-    sublabel: "Get updates",
-    icon: Send,
-    gradient: "from-cyan-500 to-blue-500",
-    color: "#06b6d4",
+    href: "https://www.instagram.com/opensourcetech.in?igsh=MXY2OXBsOXc4Z2g5",
+    label: "Instagram",
+    sublabel: "Follow updates",
+    icon: Instagram,
+    gradient: "from-fuchsia-500 to-pink-500",
+    color: "#d946ef",
+    external: true,
+  },
+  {
+    href: "https://www.linkedin.com/company/open-source-tech-community/",
+    label: "LinkedIn",
+    sublabel: "Connect professionally",
+    icon: Linkedin,
+    gradient: "from-blue-500 to-cyan-500",
+    color: "#3b82f6",
+    external: true,
   },
   {
     href: "mailto:Contact@opensourcetech.in",
@@ -80,7 +90,7 @@ const JoinSection = () => {
           </p>
 
           {/* Channel cards */}
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="flex flex-wrap justify-center gap-4">
             {channels.map((channel, index) => (
               <motion.a
                 key={channel.label}
@@ -89,7 +99,7 @@ const JoinSection = () => {
                 rel={channel.external ? "noopener noreferrer" : undefined}
                 {...cardReveal(index * 0.07)}
                 whileHover={{ scale: 1.04, y: -4 }}
-                className="gradient-border group relative flex flex-col items-center gap-3 overflow-hidden p-6 text-center"
+                className="gradient-border group relative flex flex-col items-center gap-3 overflow-hidden p-6 text-center w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(20%-0.8rem)] max-w-xs"
               >
                 {/* Hover glow */}
                 <div

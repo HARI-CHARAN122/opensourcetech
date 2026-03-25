@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, Twitter } from "lucide-react";
+import { Github, Linkedin, Mail, Twitter, Instagram } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Footer = () => {
@@ -55,9 +55,10 @@ const Footer = () => {
             <div className="flex items-center gap-4">
               {[
                 { Icon: Github, href: "#" },
-                { Icon: Linkedin, href: "#" },
+                { Icon: Linkedin, href: "https://www.linkedin.com/company/open-source-tech-community/" },
                 { Icon: Twitter, href: "#" },
-                { Icon: Mail, href: "#" },
+                { Icon: Instagram, href: "https://www.instagram.com/opensourcetech.in?igsh=MXY2OXBsOXc4Z2g5" },
+                { Icon: Mail, href: "mailto:Contact@opensourcetech.in" },
               ].map(({ Icon, href }, i) => (
                 <a
                   key={i}
@@ -103,7 +104,9 @@ const Footer = () => {
               {['Who Should Join', 'Resources', 'Join Us'].map((link) => (
                 <li key={link}>
                   <a 
-                    href="#"
+                    href={link === 'Join Us' ? 'https://chat.whatsapp.com/BqyJTWr9iXh6Z7IisCwiUT' : '#'}
+                    target={link === 'Join Us' ? '_blank' : undefined}
+                    rel={link === 'Join Us' ? 'noopener noreferrer' : undefined}
                     style={{ color: "rgba(255, 255, 255, 0.5)" }}
                     className="text-sm transition-colors hover:text-white"
                   >
@@ -136,7 +139,9 @@ const Footer = () => {
                 Join our community on WhatsApp to stay updated.
               </p>
               <a 
-                href="#"
+                href="https://chat.whatsapp.com/BqyJTWr9iXh6Z7IisCwiUT"
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{ color: "#fbcfe8", borderBottom: "1px solid rgba(251,207,232,0.3)" }}
                 className="text-sm font-medium inline-flex items-center gap-1 pb-0.5 hover:gap-2 transition-all"
               >
